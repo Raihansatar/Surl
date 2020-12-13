@@ -3,12 +3,28 @@
 namespace App\Http\Controllers\Url;
 
 use App\Http\Controllers\Controller;
+use App\Models\ShortUrl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UrlController extends Controller
 {
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
+
+        $request->validate([
+            'link' => 'required|url',
+            'length' => 'required'
+         ]);
+
+        $input['longUrl'] = $request->link;
+        $input['shortUrl'] = Str::random($request->length);
+   
+        ShortUrl::create($input);
+        
+        return redirect('/')
+        ->with('success', 'Shorten Link Generated Successfully!');
+
     }
 }
