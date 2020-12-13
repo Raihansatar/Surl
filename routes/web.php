@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UrlController::class, 'index'])->name('welcome');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('/url/store', [UrlController::class, 'store'])->name('url.store');
+
+// Route::get('/{code}', [UrlController::class], 'redirectto')->name('url.redirect');
+Route::get('/{shortUrl}', [UrlController::class, 'redirectto'])->name('url.redirect');
+
