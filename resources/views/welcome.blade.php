@@ -12,14 +12,15 @@
         <div class="card-body">
             <form action="{{ route('url.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="form-control">
-                    <label for="">Link</label>
-                    <input type="text" name="link" id="">
-                </div>
-                <div class="form-control">
-                    <label for="">Length</label>
-                    <input type="number" max="6" min="4" name="length" id="">
-                </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Link</label>
+                        <input class="form-control" type="text" name="link" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Length</label>
+                        <input class="form-control" type="number" max="6" min="4" name="length" id="">
+                    </div>
+
 
                 <input type="submit" class="btn btn-sm btn-success" name="submit" id="">
             </form>
