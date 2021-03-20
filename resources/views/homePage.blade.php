@@ -5,7 +5,7 @@
     @auth
         <div class="card">
             <div class="card-header">
-                Welcome {{ $email }}, paste the URL to be shortened
+                Welcome <strong>{{ $name }}</strong>, paste the URL to be shortened
             </div>
 
             
@@ -68,15 +68,19 @@
 
             
             <div class="card-body">
-                <form action="{{ route('login.attempt') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="mb-3">
+                            <label for="" class="form-label">Name</label>
+                            <input class="form-control" type="name" name="name" id="name" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="" class="form-label">Email</label>
-                            <input class="form-control" type="email" name="email" id="email">
+                            <input class="form-control" type="email" name="email" id="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Password</label>
-                            <input class="form-control" type="password" name="password" id="password">
+                            <input class="form-control" type="password" name="password" id="password" required>
                         </div>
     
     

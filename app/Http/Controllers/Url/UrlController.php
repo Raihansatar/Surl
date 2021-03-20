@@ -17,8 +17,8 @@ class UrlController extends Controller
     {
         if(Auth::check()){
             $data = ShortUrl::where('user_id', Auth::id())->get();
-            $email = Auth::user()->email;
-            return view('homePage', compact('data', 'email'));
+            $name = Auth::user()->name;
+            return view('homePage', compact('data', 'name'));
         }else{
             return view('homePage');
         }
