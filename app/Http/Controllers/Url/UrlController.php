@@ -14,7 +14,7 @@ class UrlController extends Controller
     public function index()
     {
         $data = ShortUrl::all();
-        return view('welcome', compact('data'));
+        return view('homePage', compact('data'));
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class UrlController extends Controller
         ->with('success', 'Shorten Link Generated Successfully!');
     }
 
-    public function redirectto($shortUrl)
+    public function redirectUser($shortUrl)
     {
         $data = ShortUrl::where('shortUrl', $shortUrl)->first();
         return Redirect::away($data->longUrl);

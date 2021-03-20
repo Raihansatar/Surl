@@ -18,7 +18,7 @@
         @include('panels.navbar')
     {{-- </header> --}}
     <main>
-        <div class="container mt-4">
+        <div class="container mt-4 gy-2">
             @yield('contents')
         </div>
     </main>
