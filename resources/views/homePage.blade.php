@@ -14,11 +14,11 @@
                     @csrf
                         <div class="mb-3">
                             <label for="" class="form-label">Link</label>
-                            <input class="form-control" type="text" name="link" id="link">
+                            <input class="form-control" type="text" name="link" id="link" required>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Length</label>
-                            <input class="form-control" type="number" max="6" min="4" name="length" id="length">
+                            <input class="form-control" type="number" max="6" min="4" name="length" id="length" required>
                         </div>
 
 
@@ -82,8 +82,6 @@
                             <label for="" class="form-label">Password</label>
                             <input class="form-control" type="password" name="password" id="password" required>
                         </div>
-    
-    
                     <input type="submit" class="btn btn-sm btn-success" name="signin" id="signin">
                 </form>
             </div>

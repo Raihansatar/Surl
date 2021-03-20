@@ -29,6 +29,7 @@
 
 
     <script src=" {{ asset('js/app.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     @stack('custom-js')
 </body>
