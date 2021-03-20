@@ -9,9 +9,17 @@
                 <li class="nav-item d-flex">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
-                <li class="nav-item d-flex">
-                    <a class="nav-link" aria-current="page" href="login">Login</a>
-                </li>
+                @guest
+                    <li class="nav-item d-flex">
+                        <a class="nav-link" aria-current="page" href="login">Login</a>
+                    </li>
+                @endguest
+                @auth
+                    <li class="nav-item d-flex">
+                        <a class="nav-link" aria-current="page" href="logout">Logout</a>
+                    </li>
+                    
+                @endauth
             </ul>
         </div>
     </div>

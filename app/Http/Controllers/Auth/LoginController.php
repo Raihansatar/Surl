@@ -48,10 +48,16 @@ class LoginController extends Controller
     public function loginAttempt(Request $request)
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            return redirect('/')->with('success', 'Successful Login. Welcome:  '.$request->email);;
+            return redirect('/')->with('success', 'Successful Login. Welcome:  '.$request->email);
         }else{
             return redirect('/login')
             ->with('error', 'User not found');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/')->with('success', 'Successful Logout.');
     }
 }

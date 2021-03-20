@@ -1,12 +1,11 @@
 @extends('layouts.main')
 
 @section('contents')
+    @include('panels.flash-message')
     <div class="card">
         <div class="card-header">
             Welcome, please sign in
         </div>
-
-        @include('panels.flash-message')
         
         <div class="card-body">
             <form action="{{ route('login.attempt') }}" method="POST" enctype="multipart/form-data">
@@ -22,6 +21,7 @@
 
 
                 <input type="submit" class="btn btn-sm btn-success" name="signin" id="signin">
+                <a href="/">First time? Register here</a>
             </form>
         </div>
     </div>
