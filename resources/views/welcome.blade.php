@@ -30,7 +30,7 @@
     @if(!empty($data))
         <div class="card">
             <div class="card-body">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover" id="surl-datatable">
                     <thead>
                         <th>No</th>
                         <th>URL</th>
@@ -54,5 +54,12 @@
 
         </div>
     @endif
-
 @endsection
+
+@push('custom-js')
+    <script>
+        $('document').ready(function(){
+            $('#surl-datatable').DataTable();
+        })
+    </script>
+@endpush

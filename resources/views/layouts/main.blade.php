@@ -7,7 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>URLShorten</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     {{-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> --}}
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
 
 
 </head>
@@ -27,5 +29,7 @@
 
 
     <script src=" {{ asset('js/app.js') }}"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    @stack('custom-js')
 </body>
 </html>
