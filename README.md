@@ -1,6 +1,4 @@
 # URL Shortener
+A simple URL Shortener.
 
-# Stack
-* React (Frond End) : coming Soon
-* Bootstrap v5
-* Laravel 8 (Back End)    
+You can clone  if you want to. But please make sure you enter your email in .env file or else, the email verification not working.
