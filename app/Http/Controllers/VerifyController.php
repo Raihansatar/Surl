@@ -20,8 +20,6 @@ class VerifyController extends Controller
 
     public function sendVerification(Request $request) {
         $request->user()->sendEmailVerificationNotification();
-    
         return back()->with('info', 'Verification link sent!');
-        // return back()->with('message', 'Verification link sent!');
     }
 }
