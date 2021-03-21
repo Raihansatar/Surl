@@ -2,7 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A simple Url Shortener Web app">
+    <meta name="keywords" content="URL Shortener, URL, short">
+    <meta name="author" content="Raihan Satar">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="SURL - URL Shortener" />
+    <meta property="og:description" content="A simple Url Shortener Web app" />
+    <meta property="og:url" content="https://surl.reheen.com/"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SURL</title>
