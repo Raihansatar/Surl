@@ -24,9 +24,13 @@ Route::get('/', [UrlController::class, 'index'])->name('welcome');
 Route::get('/login', [LoginController::class, 'loginPage'])->name('login');
 Route::post('/login', [LoginController::class, 'loginAttempt'])->name('login.attempt');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/register', [RegisterController::class, 'create'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register.signup');
+Route::get('/{shortUrl}', [UrlController::class, 'redirectUser'])->name('url.redirect');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/url/store', [UrlController::class, 'store'])->name('url.store');
-    Route::get('/{shortUrl}', [UrlController::class, 'redirectUser'])->name('url.redirect');
+    Route::post('/url/deleteUrl', [UrlController::class, 'deleteUrl'])->name('url.deleteUrl');
+    Route::get('/url/datatable', [UrlController::class, 'getDatatable'])->name('url.datatable');
+    
 });

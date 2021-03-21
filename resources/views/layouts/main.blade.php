@@ -12,25 +12,25 @@
     <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
 
 
-</head>
-<body>
-    {{-- <header> --}}
-        @include('panels.navbar')
-    {{-- </header> --}}
-    <main>
-        <div class="container mt-4 gy-2">
-            @yield('contents')
-        </div>
-    </main>
-    
-    <footer class="footer mt-auto py-3 bg-dark fixed-bottom">
-        @include('panels.footer')
-    </footer>
+    </head>
+    <body>
+        {{-- <header> --}}
+            @include('panels.navbar')
+        {{-- </header> --}}
+        <main>
+            <div class="container mt-4 gy-2">
+                @yield('contents')
+            </div>
+        </main>
+        
+        <footer class="footer py-3 pt-2 bg-dark fixed-bottom">
+            @include('panels.footer')
+        </footer>
 
 
-    <script src=" {{ asset('js/app.js') }}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    @stack('custom-js')
-</body>
+        <script src=" {{ asset('js/app.js') }}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        @stack('custom-js')
+    </body>
 </html>

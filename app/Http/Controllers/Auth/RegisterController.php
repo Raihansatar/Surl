@@ -43,6 +43,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    protected function index()
+    {
+        return view('register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -66,6 +71,9 @@ class RegisterController extends Controller
      */
     protected function create(Request $data)
     {
+        if (User::where('email', '=', $data['email'])->exists()) {
+            return redirect('/register')->with('error', 'User email already exist. Please use other email');
+        }
         $data = User::create([
             'name' => $data['name'],
             'email' => $data['email'],

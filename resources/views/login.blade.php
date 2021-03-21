@@ -11,14 +11,14 @@
             <form action="{{ route('login.attempt') }}" class="needs-validation" novalidate method="POST" enctype="multipart/form-data" id="loginform">
                 @csrf
                     <div class="mb-3">
-                        <label for="" class="form-label">Email</label>
+                        <label for="" class="form-label">Email <span style="color: red">*</span> </label>
                         <input class="form-control" type="email" name="email" id="email" required>
                         <div class="invalid-feedback">
                             Email is required
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Password</label>
+                        <label for="" class="form-label">Password <span style="color: red">*</span></label>
                         <input class="form-control" type="password" name="password" id="password" required>
                         <div class="invalid-feedback">
                             Password is required
@@ -28,7 +28,7 @@
                     
 
                 <input type="submit" class="btn btn-sm btn-success" name="signin" id="signin">
-                <a href="/">First time? Register here</a>
+                <a href="{{ route('register.signup') }}">First time? Register here</a>
             </form>
         </div>
     </div>

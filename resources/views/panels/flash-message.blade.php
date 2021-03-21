@@ -16,10 +16,6 @@
 @endif
 
 @if ($message = Session::get('error'))
-{{-- <div class="alert alert-danger alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
-</div> --}}
 
 <div class="alert alert-custom alert-danger fade show" role="alert">
     <div class="alert-icon"><i class="flaticon-danger"></i></div>
