@@ -33,10 +33,6 @@ class UrlRepository implements UrlInterface
 
     public function store($request)
     {
-        // $request->validate([
-        //     'link' => 'required|url',
-        //     'length' => 'required'
-        //  ]);
 
         $validator = Validator::make($request->all(), [
             'link' => 'required|url',
@@ -47,18 +43,17 @@ class UrlRepository implements UrlInterface
             $data['type'] = 'danger';
             $data['message']= 'Wrong Input!';
             return response()->json($data);
+        }else{
+            $input['user_id'] = Auth::id();
+            $input['longUrl'] = $request->link;
+            $input['shortUrl'] = Str::random($request->length);
+       
+            ShortUrl::create($input);
+            $data['type'] = 'success';
+            $data['message']= 'Shorten Link Generated Successfully!';
+            return response()->json($data);
         }
         
-        $input['user_id'] = Auth::id();
-        $input['longUrl'] = $request->link;
-        $input['shortUrl'] = Str::random($request->length);
-   
-        ShortUrl::create($input);
-        $data['type'] = 'success';
-        $data['message']= 'Shorten Link Generated Successfully!';
-        return response()->json($data);
-        // return redirect('/')
-        // ->with('success', 'Shorten Link Generated Successfully!');
     }
 
     public function getDatatable()
