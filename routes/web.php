@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\Url\UrlController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ Route::post('/register', [RegisterController::class, 'create'])->name('register.
 Route::get('/verify', [VerifyController::class, 'index'])->middleware('auth')->name('verification.notice');
 Route::get('/email/verify/{id}/{hash}', [VerifyController::class, 'verification'])->middleware(['auth', 'signed'])->name('verification.verify');
 Route::post('/email/verification-notification', [VerifyController::class, 'sendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 
 Route::get('/{shortUrl}', [UrlController::class, 'redirectUser'])->name('url.redirect');
 

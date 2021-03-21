@@ -1,18 +1,14 @@
 @if ($message = Session::get('success'))
-{{-- <div class="alert alert-success alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>{{ $message }}</strong>
-</div> --}}
 
-<div class="alert alert-custom alert-success fade show" role="alert">
-    <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
-    <div class="alert-text">{{ $message }}</div>
-    <div class="alert-close">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="ki ki-close"></i></span>
-        </button>
+    <div class="alert alert-custom alert-success fade show" role="alert">
+        <div class="alert-icon"><i class="flaticon2-check-mark"></i></div>
+        <div class="alert-text">{{ $message }}</div>
+        <div class="alert-close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="bi bi-x-square"></i></span>
+            </button>
+        </div>
     </div>
-</div>
 @endif
 
 @if ($message = Session::get('error'))
@@ -22,7 +18,7 @@
     <div class="alert-text">{{ $message }}</div>
     <div class="alert-close">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="ki ki-close"></i></span>
+            <span aria-hidden="true"><i class="bi bi-x"></i></span>
         </button>
     </div>
 </div>
