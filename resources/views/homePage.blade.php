@@ -47,7 +47,7 @@
 
         @push('custom-js')
             <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
-            <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
+            
 
             <script>
                 $('document').ready(function(){
@@ -140,7 +140,14 @@
     @guest
         <section>
             <div>
-                Welcome
+                
+                <h2>
+                    Welcome to SURL.
+
+                </h2>
+                A simple URL shortener web app.
+
+                
             </div>
 
         </section>

@@ -27,7 +27,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Feedback form:</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</i></span>
+                        </button>
                     </div>
                     <form id="feedbackForm" method="POST" action="" enctype="multipart/form-data">
                     <div class="modal-body">
@@ -63,7 +65,7 @@
         <!-- JavaScript Bundle with Popper -->
         <script src=" {{ asset('js/app.js') }}"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> --}}
-
+        <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
         <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
         @stack('custom-js')
@@ -71,7 +73,6 @@
             $('document').ready(function(){
                 $('#feedbackForm').submit(function(e){
                     e.preventDefault();
-                    alert("weawe")
                     var data = $(this).serializeArray();
                     $.ajax({
                         url: '{{ route('feedback.store') }}',

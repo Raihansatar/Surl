@@ -6,26 +6,27 @@
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
             <ul class="navbar-nav justify-content-between">
-                <li class="nav-item d-flex">
+                <li class="nav-item ">
                     <a class="nav-link {{ Request::is('/')? "active" : "" }} " aria-current="page" href="{{ route('welcome') }}">Home</a>
                 </li>
+                <li class="nav-item ">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#feedbackModal">Send Feeback</a>
+                </li>
                 @guest
-                    <li class="nav-item d-flex">
+                    <li class="nav-item ">
                         <a class="nav-link {{ Request::is('login')? "active" : "" }}" aria-current="page" href="{{ route('login') }}">Login</a>
                     </li>
 
-                    <li class="nav-item d-flex">
-                        <a class="nav-link {{ Request::is('register')? "active" : "" }}" aria-current="page" href="{{ route('register') }}">Register</a>
-                    </li>
+                    {{-- <li class="nav-item ">
+                        <a class="nav-link {{ Request::is('register')? "active" : "" }}" aria-current="page" href="{{ route('register') }}">Signup</a>
+                    </li> --}}
                 @endguest
                 @auth
-                    <li class="nav-item d-flex">
+                    <li class="nav-item ">
                         <a class="nav-link" aria-current="page" href="{{ route('logout') }}">Logout</a>
                     </li>
                 @endauth
-                    <li class="nav-item d-flex">
-                        <a class="nav-link" data-toggle="modal" data-target="#feedbackModal">Send Feeback</a>
-                    </li>
+                    
             </ul>
         </div>
     </div>
