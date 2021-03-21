@@ -3,111 +3,78 @@
 namespace App\Repositories\Url;
 
 use App\Interfaces\Url\UrlInterface;
-use App\Models\click_count;
-use App\Models\ShortUrl;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Services\Url\DeleteUrlService;
+use App\Services\Url\GetDatatableService;
+use App\Services\Url\IndexService;
+use App\Services\Url\RedirectUserService;
+use App\Services\Url\StoreService;
+use Exception;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Yajra\DataTables\Facades\DataTables;
 
 class UrlRepository implements UrlInterface
 {
+    protected $indexServices, $storeService, $getDatatableService, $redirectUserService, $deleteUrlService;
+
+    public function __construct(
+        IndexService $indexService,
+        StoreService $storeService,
+        GetDatatableService $getDatatableService,
+        RedirectUserService $redirectUserService,
+        DeleteUrlService $deleteUrlService
+    )
+    {
+        $this->indexServices = $indexService;
+        $this->storeService = $storeService;
+        $this->getDatatableService = $getDatatableService;
+        $this->redirectUserService = $redirectUserService;
+        $this->deleteUrlService = $deleteUrlService;
+    }
+
     public function index()
     {
-        
+        $data = $this->indexServices->index();
 
-        if(Auth::check()){
-            if(User::find(Auth::id())->hasVerifiedEmail()){
-                $data = ShortUrl::where('user_id', Auth::id())->get();
-                $name = Auth::user()->name;
-                return view('homePage', compact('data', 'name'));
-            }else{
-                return redirect()->route('verification.notice')->with('info', 'Please check your email for verification.');
-            }
-        }else{
-            return view('homePage');
-        }
+        return $data;
+        
     }
 
     public function store($request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'link' => 'required|url',
-            'length' => 'required'
-        ]);
-
-        if($validator->fails()){
-            $data['type'] = 'danger';
-            $data['message']= 'Wrong Input!';
-            return response()->json($data);
-        }else{
-            $input['user_id'] = Auth::id();
-            $input['longUrl'] = $request->link;
-            $input['shortUrl'] = Str::random($request->length);
-       
-            ShortUrl::create($input);
-            $data['type'] = 'success';
-            $data['message']= 'Shorten Link Generated Successfully!';
-            return response()->json($data);
-        }
+        $data = $this->storeService->store($request);
+        return $data;
         
     }
 
     public function getDatatable()
     {
-        $data = ShortUrl::where('user_id', Auth::id())->get();
-        return DataTables::of($data)
-            ->editColumn('id', function ($row)
-            {
-                return 'X'.Auth::id().'F'.sprintf('%03d', $row->id);
-                
-            })
-            ->editColumn('Url', function ($row)
-            {
-                $data = '<a href="'.$row->shortUrl.'" target="_blank">'.$row->longUrl.'</a>';
-                return $data;
-            })
-            ->editColumn('ShortUrl', function ($row)
-            {
-                $data = '<a href="'.route('url.redirect', $row->shortUrl).'" target="_blank">'.route('url.redirect', $row->shortUrl).'</a>';
-                return $data;
-            })
-            ->editColumn('DateCreated', function ($row)
-            {
-                return $row->created_at;
-            })
-            ->editColumn('action', function ($row)
-            {
-                $button = '<button class="btn btn-sm btn-danger mr-2 delete_url" data-id=" '.$row->id.'"> Delete </button>';
-                return $button;
-            })
-            ->rawColumns(['Url', 'ShortUrl', 'action'])
-            ->make(true);
+        $data = $this->getDatatableService->getDatatable();
+
+        return $data;
     }
 
     public function redirectUser($shortUrl)
     {
-
-        $data = ShortUrl::where('shortUrl', $shortUrl)->first();
-        click_count::create([
-            'click_url_id' => $data->id,
-            // 'browser' => '',
-            // 'location' => "",
-            // 'ip_address' => "",
-        ]);
-        return Redirect::away($data->longUrl);
+        try{
+            $data = $this->redirectUserService->redirectUser($shortUrl);
+            return Redirect::away($data->longUrl);
+        }catch(Exception $e){
+            return $e;
+        }
+        
     }
     
     public function deleteUrl($request)
     {
-        $data = ShortUrl::find($request->id);
-        $data -> delete();
 
-        $response['type'] = 'success';
-        $response['message']= 'Delete Successfully!';
+        try{
+            $this->deleteUrlService->deleteUrl($request);
+            $response['type'] = 'success';
+            $response['message']= 'Delete Successfully!';
+        }catch(Exception $e){
+            $response['type'] = 'danger';
+            $response['message']= 'Error, something wrong!';
+        }
+        
         return response()->json($response);
     }
 }

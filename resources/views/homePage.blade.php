@@ -145,8 +145,19 @@
                     Welcome to SURL.
 
                 </h2>
-                A simple URL shortener web app.
+                <h4>
+                    A simple URL shortener web app.
+                </h4>
+                <br>
+                <p>Coming soon: <br>
+                <ul>
+                    <li>Click counter and analytics</li>  
+                    <li>Deactivate and activate link function</li>
+                    <li>Link expired data</li>
+                </ul>
 
+                <h6>Please login to use. Make sure to enter valid email address.</h6>
+                Register? <a href="{{ route('register') }}"> click here</a>
                 
             </div>
 
