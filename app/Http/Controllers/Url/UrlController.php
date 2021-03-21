@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Url;
 use App\Http\Controllers\Controller;
 use App\Models\click_count;
 use App\Models\ShortUrl;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -18,10 +19,16 @@ class UrlController extends Controller
 
     public function index()
     {
+        
+
         if(Auth::check()){
-            $data = ShortUrl::where('user_id', Auth::id())->get();
-            $name = Auth::user()->name;
-            return view('homePage', compact('data', 'name'));
+            if(User::find(Auth::id())->hasVerifiedEmail()){
+                $data = ShortUrl::where('user_id', Auth::id())->get();
+                $name = Auth::user()->name;
+                return view('homePage', compact('data', 'name'));
+            }else{
+                return redirect()->route('verification.notice')->with('info', 'Please check your email for verification.');
+            }
         }else{
             return view('homePage');
         }
