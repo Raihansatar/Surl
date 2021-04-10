@@ -7,7 +7,7 @@ You can clone  if you want to. But please make sure you enter your email in .env
 - Laravel 8
 - Bootstrap 4
 
-Tools used
+Tools used during development
 - Laragon (for ease to maange localhost)
 - PostgreSQL
 
@@ -15,4 +15,4 @@ Dependencies
 - spatie/laravel-permission
 
 Link
-``` https://surl.reheen.com/
+[SURL Website](https://www.surl.reheen.com)
